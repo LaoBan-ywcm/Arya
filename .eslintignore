@@ -1,0 +1,4 @@
+tempDir
+.storybook
+.husky
+node_modules
