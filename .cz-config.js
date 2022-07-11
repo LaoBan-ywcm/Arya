@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-
   types: [
     { value: ':construction', name: '🚧  WIP:            开发中' },
     { value: ':sparkles', name: '✨  feat:           一个新特性' },
@@ -11,7 +10,7 @@ module.exports = {
     { value: ':memo', name: '📝    docs:           变更文档' },
     { value: ':white_check_mark', name: '✅   test:           修改或添加测试文件' },
     { value: ':wrench', name: '🔧  config:         修改或添加配置文件' },
-    { value: ':art', name: '🎨  style:          修改格式，不影响功能，例如空格、代码格式等' },
+    { value: ':art', name: '🎨  style:          修改格式，不影响功能，例如空格、代码格式等' }
   ],
 
   // scopes: [{ name: 'accounts' }, { name: 'admin' }, { name: 'exampleScope' }, { name: 'changeMe' }],
@@ -34,8 +33,7 @@ module.exports = {
   },
 
   allowCustomScopes: true,
-  allowBreakingChanges: ["feat", "fix"],  // 仅在feat、fix时填写破坏性更改
+  allowBreakingChanges: ['feat', 'fix'], // 仅在feat、fix时填写破坏性更改
   subjectLimit: 100, // limit subject length
-  breaklineChar: '|',  // 设置body和footer中的换行符
+  breaklineChar: '|' // 设置body和footer中的换行符
 };
-
