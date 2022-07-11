@@ -1,4 +1,4 @@
-import './banner.css';
+import './banner.less';
 
 import { Carousel } from 'antd';
 

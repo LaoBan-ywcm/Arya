@@ -1,4 +1,4 @@
-import './index.css';
+import './index.less';
 
 import { Layout } from 'antd';
 import ReactDOM from 'react-dom/client';
