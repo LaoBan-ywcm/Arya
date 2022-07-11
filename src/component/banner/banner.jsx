@@ -1,15 +1,11 @@
-import './banner.css'
+import './banner.css';
 
-import { Carousel } from 'antd'
-import React from 'react'
+import { Carousel } from 'antd';
 
-class Banner extends React.Component {
-  render () {
-    return (
-        <Carousel>
-            <img src='/img/banner.png'></img>
-        </Carousel>
-    )
-  }
-}
-export default Banner
+const Banner = () => (
+  <Carousel>
+    <img src="/img/bg.png" alt="bg" />
+  </Carousel>
+);
+
+export default Banner;
