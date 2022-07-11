@@ -1,11 +1,9 @@
 import './banner.less';
 
-import { Carousel } from 'antd';
-
 const Banner = () => (
-  <Carousel>
-    <img src="/img/bg.png" alt="bg" />
-  </Carousel>
+  <div className="overlay">
+    <div className="web_bg" />
+  </div>
 );
 
 export default Banner;

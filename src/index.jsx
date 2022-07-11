@@ -1,17 +1,16 @@
 import './index.less';
 
 import { Layout } from 'antd';
+import { Content, Footer, Header } from 'antd/lib/layout/layout';
 import ReactDOM from 'react-dom/client';
 
 import Banner from './component/banner/banner';
 
-const { Header, Footer, Content } = Layout;
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <div className="app">
+  <div id="app">
     <Layout>
-      <Header>
+      <Header className="header">
         <Banner />
       </Header>
       <Content>Content</Content>
