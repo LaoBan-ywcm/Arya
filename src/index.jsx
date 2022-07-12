@@ -13,8 +13,8 @@ root.render(
       <Header className="header">
         <Banner />
       </Header>
-      <Content>Content</Content>
-      <Footer>Footer</Footer>
+      <Content className="content">Content</Content>
+      <Footer className="footer">Footer</Footer>
     </Layout>
   </div>
 );

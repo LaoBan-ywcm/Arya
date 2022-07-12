@@ -1,20 +1,3 @@
-html,
-body,
-#root,
-#app,
-.ant-layout {
-  width: 100%;
-  height: 100%;
-}
-
-.header {
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-}
-
 html {
   &::-webkit-scrollbar {
     display: none; /* Chrome Safari */
@@ -25,3 +8,34 @@ html {
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+.wh100 {
+  width: 100%;
+  height: 100%;
+}
+
+html,
+body,
+#root,
+#app,
+.ant-layout {
+  .wh100();
+}
+
+.header {
+  .wh100();
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
+}
+
+// @z-index: 1;
+
+// .content {
+//   @z-index: 2;
+//   z-index: @z-index;
+// }
+
+// .footer {
+//   z-index: @z-index;
+// }
