@@ -17,7 +17,7 @@ const items = [
 ];
 
 const BlogMenu = () => (
-  <div>
+  <div className="inner_menu_box">
     <span className="menu_blog_name">鱼丸粗面的博客</span>
     <Menu className="menu" items={items} mode="horizontal" />
   </div>
