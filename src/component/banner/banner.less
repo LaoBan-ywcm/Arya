@@ -6,6 +6,67 @@
   background-position: center center;
   background-attachment: scroll;
   background-repeat: no-repeat;
+  background-color: black;
+
+  display: grid;
+  grid-template-rows: [r1] 1fr [r2] 1fr [r3] 1fr;
+  grid-template-columns: [c1] minmax(170px, 1fr) [c2] 1fr [c3] 1fr;
+  grid-template-areas:
+    'a b c'
+    'd e f'
+    'g h i';
+
+  .item-1,
+  .item-3,
+  .item-4 {
+    z-index: 2;
+    position: relative;
+  }
+
+  .item-1 {
+    justify-self: start;
+  }
+  .item-3 {
+    justify-self: end;
+  }
+
+  .item-4 {
+    grid-column: 1 / span 3;
+    place-self: center center;
+  }
+  .item-5 {
+    grid-column: 1 / span 3;
+    place-self: end center;
+    font-size: 2rem;
+    z-index: 2;
+    color: white;
+    animation-name: angles_down;
+    animation-duration: 0.7s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+    position: relative;
+  }
+
+  @keyframes angles_down {
+    0% {
+      opacity: 0.7;
+      top: -10px;
+    }
+    100% {
+      opacity: 0.2;
+      top: 10px;
+    }
+  }
+
+  .menu_blog_name {
+    font-size: 1.2rem;
+    padding-left: 1.4rem;
+    color: white;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  }
 
   .overlay_box {
     width: 100%;
@@ -17,12 +78,5 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
-  }
-
-  .out_menu_box {
-    position: sticky;
-    top: 0px;
-    left: 0px;
-    z-index: 2;
   }
 }
