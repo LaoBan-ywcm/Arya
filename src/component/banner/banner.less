@@ -1,3 +1,8 @@
+.banner_out_box {
+  width: 100%;
+  height: 100%;
+}
+
 .banner_box {
   width: 100%;
   height: 100%;
@@ -6,7 +11,6 @@
   background-position: center center;
   background-attachment: scroll;
   background-repeat: no-repeat;
-  background-color: black;
 
   display: grid;
   grid-template-rows: [r1] 1fr [r2] 1fr [r3] 1fr;
@@ -33,6 +37,7 @@
   .item-4 {
     grid-column: 1 / span 3;
     place-self: center center;
+    height: 64px;
   }
   .item-5 {
     grid-column: 1 / span 3;
@@ -45,18 +50,17 @@
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-
     position: relative;
   }
 
   @keyframes angles_down {
     0% {
       opacity: 0.7;
-      top: -10px;
+      top: -20px;
     }
     100% {
       opacity: 0.2;
-      top: 10px;
+      top: 0px;
     }
   }
 
@@ -68,15 +72,19 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
   }
 
-  .overlay_box {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 1;
+  .item-scroll:hover {
+    cursor: pointer;
   }
+}
+
+.overlay_box {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
