@@ -15,6 +15,7 @@ module.exports = {
   },
   plugins: ['react', 'simple-import-sort'],
   rules: {
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     // suppress errors for missing 'import React' in files
     'react/react-in-jsx-scope': 'off',
     // allow jsx syntax in js files (for next.js project)
@@ -33,6 +34,19 @@ module.exports = {
       }
     ],
     'react/prop-types': 'off',
-    'global-require': 0
+    'global-require': 0,
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state']
+      }
+    ],
+    'no-unused-vars': [
+      'error',
+      {
+        args: 'none'
+      }
+    ]
   }
 };
