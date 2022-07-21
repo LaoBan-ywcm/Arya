@@ -10,18 +10,20 @@ import PostViews from './component/post_view/post_view';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <div id="app">
-        <div className="header">
-          <Banner />
-        </div>
-        <div className="content">
-          <PostViews />
-        </div>
-        <div className="footer">Footer</div>
+  <Provider store={store}>
+    <div id="app">
+      <div className="header">
+        <Banner />
       </div>
-    </Provider>
-  </React.StrictMode>
+      <div className="content" id="post_anchor">
+        <PostViews />
+      </div>
+      <div className="footer">
+        <div>
+          Footer
+        </div>
 
+      </div>
+    </div>
+  </Provider>
 );
