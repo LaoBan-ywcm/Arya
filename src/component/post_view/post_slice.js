@@ -2,13 +2,15 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  status: '',
-  error: ''
+  status: 'idle',
+  error: null,
+  posts: [],
+  total: 0
 };
 
-export const fetchPosts = createAsyncThunk('post/fetchPosts', async () => {
-  const response = await axios.get('http://127.0.0.1:8888/api/v1/post');
-  return response;
+export const fetchPosts = createAsyncThunk('post/fetchPosts', async (page) => {
+  const response = await axios.get(`http://127.0.0.1:8888/api/v1/post?page=${page}`);
+  return response.data;
 });
 
 const postsSlice = createSlice({
@@ -18,12 +20,14 @@ const postsSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchPosts.pending, (state, action) => {
-        // eslint-disable-line no-unused-vars
         state.status = 'loading';
+        state.posts = [];
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = 'successed';
-        state.posts = state.posts.concat(action.payload);
+        state.posts = state.posts.concat(action.payload.data);
+        state.total = action.payload.total;
+        state.status = 'idle';
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = 'faild';
@@ -32,6 +36,8 @@ const postsSlice = createSlice({
   }
 });
 
-export const selectAllPost = (state) => state.posts;
+export const selectAllPosts = (state) => state.posts.posts;
+export const selectPostsStatus = (state) => state.posts.status;
+export const selectPostsCount = (state) => state.posts.total;
 
 export default postsSlice.reducer;

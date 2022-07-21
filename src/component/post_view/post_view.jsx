@@ -2,68 +2,110 @@ import './post_view.less';
 
 import { faBoxArchive, faCalendarPlus, faTags } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchPosts, selectAllPost } from './post_slice';
+import Page from './pagination';
+import {
+  fetchPosts, selectAllPosts, selectPostsCount, selectPostsStatus
+} from './post_slice';
 
-const PostView = ({
-  post
-}) => {
+const PostImg = ({ post }) => {
   const {
-    title, time, category, tag, content
+    cover
   } = post;
+
   return (
-    <div className="post">
-      <div className="post_cover">
-        <img className="post_bg" src="https://blog-img-1256171178.cos.ap-beijing.myqcloud.com/%E5%88%87%E5%B0%94%E8%AF%BA%E8%B4%9D%E5%88%A9%E4%BA%8B%E4%BB%B6%2Fthumbnail.png" alt="" />
-      </div>
-      <div className="post_info">
-        <span id="post_title">{title}</span>
-        <div className="post_meta_info">
-          <span id="post_time">
-            <FontAwesomeIcon id="post_icon" icon={faCalendarPlus} />
-            发表于
-            {time}
-          </span>
-          <span id="post_meta_line">|</span>
-          <span id="post_category">
-            <FontAwesomeIcon id="post_icon" icon={faBoxArchive} />
-            {category}
-          </span>
-          <span id="post_meta_line">|</span>
-          <span id="post_tag">
-            <FontAwesomeIcon id="post_icon" icon={faTags} />
-            {tag}
-          </span>
-        </div>
-        <div id="post_content">{`${content.substr(0, 61)}...`}</div>
-      </div>
+    <div className="post_cover">
+      <img className="post_bg" src={cover} alt="" />
     </div>
   );
 };
 
+const PostInfo = ({ post }) => {
+  const {
+    title, ctime, categories, tags, content
+  } = post;
+
+  return (
+    <div className="post_info">
+      <span id="post_title">{title}</span>
+      <div className="post_meta_info">
+        <span id="post_time">
+          <FontAwesomeIcon id="post_icon" icon={faCalendarPlus} />
+          发表于
+          {ctime}
+        </span>
+        <span id="post_meta_line">|</span>
+        <span id="post_category">
+          <FontAwesomeIcon id="post_icon" icon={faBoxArchive} />
+          {categories}
+        </span>
+        <span id="post_meta_line">|</span>
+        <span id="post_tag">
+          <FontAwesomeIcon id="post_icon" icon={faTags} />
+          {tags.join(',')}
+        </span>
+      </div>
+      <div id="post_content">{`${content.substr(0, 61)}...`}</div>
+    </div>
+  );
+};
+
+const PostView = ({
+  post, index
+}) => {
+  const renderContent = (index % 2 === 0) ? (
+    <div className="post">
+      <PostImg post={post} />
+      <PostInfo post={post} />
+    </div>
+  ) : (
+    <div className="post">
+      <PostInfo post={post} />
+      <PostImg post={post} />
+    </div>
+  );
+
+  return renderContent;
+};
+
 const PostViews = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const dispatch = useDispatch();
-  const postStatus = useSelector((state) => state.posts.state);
-  const posts = useSelector(selectAllPost);
+  const posts = useSelector(selectAllPosts);
+  const postStatus = useSelector(selectPostsStatus);
+  const postTotal = useSelector(selectPostsCount);
+
+  const handlerPageClick = (page, pageSize) => {
+    setCurrentPage(page);
+
+    // 翻页后跳转到第一个文章
+    const postAnchor = document.getElementById('post_anchor');
+    if (postAnchor) { postAnchor.scrollIntoView(); }
+  };
 
   useEffect(() => {
     if (postStatus === 'idle') {
-      dispatch(fetchPosts());
+      dispatch(fetchPosts(currentPage));
     }
-  }, [postStatus, dispatch]);
+  }, [currentPage]);
 
-  const renderPosts = posts.map((post) => (
-    <PostView post={post} key={post.id} />
+  const renderPosts = posts.map((post, index) => (
+    <PostView post={post} key={post.id} index={index} />
   ));
 
   return (
-    <div className="post_box">
-      <div className="post_grid_box">
-        {renderPosts}
+    <div>
+      <div className="post_box">
+        <div className="post_grid_box">
+          {renderPosts}
+        </div>
       </div>
+      <Page page={currentPage} pageSize={10} total={postTotal} changePage={handlerPageClick} />
     </div>
+
   );
 };
 
