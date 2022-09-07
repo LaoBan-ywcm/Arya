@@ -1,0 +1,57 @@
+{
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "lib",
+        "es",
+        "build",
+        "scripts",
+        "acceptance-tests",
+        "webpack",
+        "jest",
+        "tslint:latest",
+        "tslint-config-prettier",
+        "tempDir"
+    ],
+    "compilerOptions": {
+        "outDir": "./dist",
+        "module": "esnext",
+        "target": "esnext",
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "sourceMap": true,
+        "baseUrl": ".",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "experimentalDecorators": true,
+        "strict": true,
+        "paths": {
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@utils/*": [
+                "src/utils/*"
+            ],
+            "@containers/*": [
+                "src/containers/*"
+            ],
+            "@static/*": [
+                "src/static/*"
+            ],
+            "@stores/*": [
+                "src/stores/*"
+            ],
+        }
+    },
+}
