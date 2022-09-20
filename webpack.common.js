@@ -23,7 +23,8 @@ module.exports = {
       "@components": path.join(process.cwd(), "/src/components"),
       "@src": path.join(process.cwd(), "/src"),
       "@static": path.join(process.cwd(), "/static"),
-      "@stores": path.join(process.cwd(), "/src/stores")
+      "@stores": path.join(process.cwd(), "/src/stores"),
+      "@common": path.join(process.cwd(), "/src/common")
     },
   },
   module: {

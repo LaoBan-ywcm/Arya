@@ -32,6 +32,7 @@
         "noImplicitReturns": true,
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": true,
+        "noImplicitAny": true,
         "allowJs": true,
         "skipLibCheck": true,
         "experimentalDecorators": true,
@@ -48,6 +49,9 @@
             ],
             "@static/*": [
                 "src/static/*"
+            ],
+            "@common/*": [
+                "src/common/*"
             ],
             "@stores/*": [
                 "src/stores/*"
