@@ -11,7 +11,10 @@ module.exports = {
     },
     project: ['./tsconfig.json'],
   },
-  rules: {},
+  rules: {
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+
+  },
   settings: {
     react: {
       version: "detect",
@@ -29,5 +32,5 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: ['package.json', '.eslintrc.js', 'babel.config.js', 'postcss.config.js', "webpack.dev.js", "webpack.common.js", "webpack.prod.js"]
+  ignorePatterns: ['package.json', 'babel-plugin-macros.config.js', '.eslintrc.js', 'babel.config.js', 'postcss.config.js', "webpack.dev.js", "webpack.common.js", "webpack.prod.js"]
 };

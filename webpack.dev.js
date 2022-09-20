@@ -12,7 +12,7 @@ module.exports = merge(wepackCommonConfig, {
     hot: true,
     historyApiFallback: true,
     open: true,
-    port: 3000,
+    port: 3010,
     static: {
       directory: path.join(process.cwd(), "/static"),
     },
