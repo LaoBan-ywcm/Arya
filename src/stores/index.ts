@@ -1,7 +1,10 @@
+import postViewReducer from '@components/postView/store';
 import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
-  reducer: {}
+  reducer: {
+    postView: postViewReducer
+  }
 });
 
 export default store;

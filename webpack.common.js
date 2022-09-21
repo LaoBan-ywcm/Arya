@@ -24,7 +24,8 @@ module.exports = {
       "@src": path.join(process.cwd(), "/src"),
       "@static": path.join(process.cwd(), "/static"),
       "@stores": path.join(process.cwd(), "/src/stores"),
-      "@common": path.join(process.cwd(), "/src/common")
+      "@common": path.join(process.cwd(), "/src/common"),
+      "@hooks": path.join(process.cwd(), "/src/hooks")
     },
   },
   module: {
