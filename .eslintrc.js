@@ -12,8 +12,10 @@ module.exports = {
     project: ['./tsconfig.json'],
   },
   rules: {
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
-
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-floating-promises": "off"
   },
   settings: {
     react: {
