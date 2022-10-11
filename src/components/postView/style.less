@@ -85,4 +85,38 @@
   display: flex;
   justify-content: center;
   margin: 30px 0px;
+  :global {
+    .ant-pagination-item,
+    .ant-pagination-prev,
+    .ant-pagination-next,
+    .ant-pagination-item-link {
+      border-radius: 8px !important;
+    }
+
+    .ant-pagination-item a {
+      color: rgb(153, 169, 191);
+    }
+
+    .ant-pagination-item:hover {
+      background-color: #ff7242;
+      border-color: #ff7242;
+      border-radius: 8px;
+    }
+    .ant-pagination-item a:hover {
+      color: white;
+    }
+
+    .ant-pagination-item-link {
+      color: rgb(80, 83, 87);
+    }
+
+    .ant-pagination-item-active {
+      background-color: #00c4b6;
+      border-color: #00c4b6;
+    }
+
+    .ant-pagination-item-active a {
+      color: white;
+    }
+  }
 }

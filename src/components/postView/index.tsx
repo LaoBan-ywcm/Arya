@@ -90,7 +90,7 @@ const PostsView: React.FC = () => {
       </div>
       <div className={styles.pagination}>
         <Pagination
-          defaultCurrent={1}
+          current={currentPage}
           total={total}
           hideOnSinglePage={true}
           onChange={(page, pageSize) => {
