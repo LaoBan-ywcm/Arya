@@ -5,12 +5,14 @@ import axios from 'axios';
 interface PostsViewState {
   status: string;
   posts: Array<any>;
+  total: number;
   error: any;
 }
 
 const initialState: PostsViewState = {
   status: 'idle',
   posts: [],
+  total: 0,
   error: null
 };
 
@@ -28,10 +30,12 @@ const postsViewSlice = createSlice({
       .addCase(fetchPostsView.pending, (state, action) => {
         state.status = 'loading';
         state.posts = [];
+        state.total = 0;
       })
       .addCase(fetchPostsView.fulfilled, (state, action) => {
         state.status = 'successed';
         state.posts = action.payload.data ? state.posts.concat(action.payload.data) : [];
+        state.total = action.payload.total as number;
         state.status = 'idle';
       })
       .addCase(fetchPostsView.rejected, (state, action) => {
@@ -40,5 +44,8 @@ const postsViewSlice = createSlice({
       });
   }
 });
+
+export const getPostsViewSlice = (state: PostsViewState) => state.posts;
+export const getPostsViewTotal = (state: PostsViewState) => state.total;
 
 export default postsViewSlice.reducer;
