@@ -9,7 +9,7 @@ const Home: React.FC = () => {
       <div className={styles.appHeader}>
         <Header />
       </div>
-      <div>
+      <div className={styles.appPostView}>
         <PostsView />
       </div>
     </div>

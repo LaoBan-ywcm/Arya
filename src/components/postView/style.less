@@ -1,0 +1,88 @@
+.posts-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+  .view-box {
+    display: flex;
+    width: 865px;
+    height: 252px;
+    background-color: rgb(252, 252, 252);
+    margin-top: 20px;
+    border-radius: 8px;
+
+    .view-box-img {
+      flex: 0 0 376px;
+      width: 376px;
+      overflow: hidden;
+      cursor: pointer;
+      .img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.6s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    .view-box-img0 {
+      .view-box-img();
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .view-box-img1 {
+      .view-box-img();
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .view-box-info {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 30px 40px;
+      width: 489px;
+      height: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      .title {
+        font-size: 24px;
+        color: rgb(31, 45, 61);
+        display: block;
+      }
+      .metadata {
+        display: block;
+        color: rgb(133, 133, 133);
+        margin: 6px 0px;
+        .icon {
+          margin-right: 6px;
+        }
+        .divider {
+          margin: 0px 6px;
+        }
+      }
+      .content {
+        width: 409px;
+        height: 56px;
+        line-height: 28px;
+        color: rgb(76, 73, 72);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC',
+          'Microsoft YaHei', sans-serif;
+        letter-spacing: 0.3px;
+        display: -webkit-box; /*  display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示  */
+        -webkit-box-orient: vertical; /*  -webkit-box-orient 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式  */
+        -webkit-line-clamp: 2; /*  -webkit-line-clamp用来限制在一个块元素显示的文本的行数 */
+        overflow: hidden;
+      }
+    }
+  }
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0px;
+}
