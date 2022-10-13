@@ -1,12 +1,34 @@
-.footer {
-  text-align: center;
-  height: 136px;
-  padding-top: 80px;
-  color: white;
+@height: 136px;
 
+.footer-box {
+  position: absolute;
+  width: 100%;
+  height: @height;
   background-image: url('../../../../static/img/bg.png');
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
+
+  .footer {
+    position: relative;
+    text-align: center;
+    height: @height;
+    color: white;
+    padding-top: 70px;
+
+    z-index: 1;
+  }
+
+  .overlay-box {
+    width: 100%;
+    height: @height;
+    position: relative;
+    top: -@height;
+    bottom: @height;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+  }
 }

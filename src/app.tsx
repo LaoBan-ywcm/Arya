@@ -1,4 +1,5 @@
 import Home from '@containers/home';
+import PostPage from '@containers/postPage/pc';
 import store from '@stores/index';
 import React, { ReactElement } from 'react';
 import { Provider } from 'react-redux';
@@ -11,6 +12,7 @@ const App: React.FC = (): ReactElement => {
       <BrowserRouter>
         <Routes>
           <Route path="" element={<Home />}></Route>
+          <Route path="/post/:id" element={<PostPage />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>

@@ -1,14 +1,14 @@
+import Nav from '@components/nav';
 import { getPost } from '@components/post/store';
 import React, { useEffect } from 'react';
 import { useAppSelector } from '../../../hooks/store';
 import styles from './style.less';
 
-const Footer: React.FC = () => {
-  const year = new Date().getFullYear();
+const Header: React.FC = () => {
   const post = useAppSelector(getPost);
 
   useEffect(() => {
-    const hb = document.getElementById('footer');
+    const hb = document.getElementById('header');
     const cover = post?.cover;
     if (hb && cover) {
       hb.style.backgroundImage = `url('${cover}')`;
@@ -16,11 +16,16 @@ const Footer: React.FC = () => {
   }, [post]);
 
   return (
-    <div className={styles.footerBox} id="footer">
-      <div className={styles.footer}>{`©2018 - ${year} By KaKa`}</div>
+    <div className={styles.header} id="header">
+      <div className={styles.nav}>
+        <Nav />
+      </div>
+      <div className={styles.info}>
+        <h1>{post?.title}</h1>
+      </div>
       <div className={styles.overlayBox}></div>
     </div>
   );
 };
 
-export default Footer;
+export default Header;
