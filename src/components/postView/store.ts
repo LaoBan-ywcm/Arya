@@ -1,5 +1,6 @@
 import { backend } from '@common/constant';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '@stores/index';
 import axios from 'axios';
 
 interface PostsViewState {
@@ -45,7 +46,7 @@ const postsViewSlice = createSlice({
   }
 });
 
-export const getPostsViewSlice = (state: PostsViewState) => state.posts;
-export const getPostsViewTotal = (state: PostsViewState) => state.total;
+export const getPostsViewSlice = (state: RootState) => state.postView.posts;
+export const getPostsViewTotal = (state: RootState) => state.postView.total;
 
 export default postsViewSlice.reducer;

@@ -2,6 +2,7 @@ import { faCalendarDays, faInbox, faTag } from '@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Pagination } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { fetchPostsView, getPostsViewSlice, getPostsViewTotal } from './store';
 import styles from './style.less';
@@ -13,7 +14,7 @@ interface PostCoverParams {
 
 const PostCover: React.FC<PostCoverParams> = ({ cover, index }) => {
   return (
-    <div className={index % 2 == 0 ? styles.viewBoxImg0 : styles.viewBoxImg1}>
+    <div className={index % 2 == 1 ? styles.viewBoxImg0 : styles.viewBoxImg1}>
       <img src={cover} className={styles.img}></img>
     </div>
   );
@@ -56,8 +57,9 @@ const PostsView: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const dispatch = useAppDispatch();
-  const postsViews = useAppSelector((state) => getPostsViewSlice(state.postView));
-  const total = useAppSelector((state) => getPostsViewTotal(state.postView));
+  const navigator = useNavigate();
+  const postsViews = useAppSelector((state) => getPostsViewSlice(state));
+  const total = useAppSelector((state) => getPostsViewTotal(state));
 
   useEffect(() => {
     dispatch(fetchPostsView(currentPage));
@@ -67,21 +69,32 @@ const PostsView: React.FC = () => {
     setCurrentPage(page);
   };
 
+  const handlerPostViewClick = (id: string) => {
+    console.log(`/post/${id}`);
+    navigator(`/post/${id}`);
+  };
+
   return (
     <div>
       <div className={styles.postsView}>
         {postsViews.map((data, index) => {
           // 文章cover图片展示在不同位置
-          if (index % 2 == 0) {
+          if (index % 2 == 1) {
             return (
-              <div className={styles.viewBox}>
+              <div
+                className={styles.viewBox}
+                key={data.id as string}
+                onClick={() => handlerPostViewClick(data.id as string)}>
                 <PostInfo {...data} />
                 <PostCover cover={data.cover as string} index={index} />
               </div>
             );
           }
           return (
-            <div className={styles.viewBox}>
+            <div
+              className={styles.viewBox}
+              key={data.id as string}
+              onClick={() => handlerPostViewClick(data.id as string)}>
               <PostCover cover={data.cover as string} index={index} />
               <PostInfo {...data} />
             </div>
@@ -90,7 +103,7 @@ const PostsView: React.FC = () => {
       </div>
       <div className={styles.pagination}>
         <Pagination
-          defaultCurrent={1}
+          current={currentPage}
           total={total}
           hideOnSinglePage={true}
           onChange={(page, pageSize) => {

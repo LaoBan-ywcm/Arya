@@ -1,3 +1,8 @@
+@viewBoxWidth: 1176px;
+@viewBoxHeight: 252px;
+@viewBoxImgWidth: 511px;
+@viewBoxInfoWidth: @viewBoxWidth - @viewBoxImgWidth;
+
 .posts-view {
   display: flex;
   flex-direction: column;
@@ -6,15 +11,15 @@
 
   .view-box {
     display: flex;
-    width: 865px;
-    height: 252px;
+    width: @viewBoxWidth;
+    height: @viewBoxHeight;
     background-color: rgb(252, 252, 252);
     margin-top: 20px;
     border-radius: 8px;
 
     .view-box-img {
-      flex: 0 0 376px;
-      width: 376px;
+      flex: 0 0 @viewBoxImgWidth;
+      width: @viewBoxImgWidth;
       overflow: hidden;
       cursor: pointer;
       .img {
@@ -45,7 +50,7 @@
       justify-content: center;
       flex-direction: column;
       padding: 30px 40px;
-      width: 489px;
+      width: @viewBoxInfoWidth;
       height: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -57,6 +62,7 @@
       .metadata {
         display: block;
         color: rgb(133, 133, 133);
+        font-size: 12.6px;
         margin: 6px 0px;
         .icon {
           margin-right: 6px;
@@ -66,7 +72,7 @@
         }
       }
       .content {
-        width: 409px;
+        // width: @viewBoxInfoWidth-80px;
         height: 56px;
         line-height: 28px;
         color: rgb(76, 73, 72);
@@ -85,4 +91,38 @@
   display: flex;
   justify-content: center;
   margin: 30px 0px;
+  :global {
+    .ant-pagination-item,
+    .ant-pagination-prev,
+    .ant-pagination-next,
+    .ant-pagination-item-link {
+      border-radius: 8px !important;
+    }
+
+    .ant-pagination-item a {
+      color: rgb(153, 169, 191);
+    }
+
+    .ant-pagination-item:hover {
+      background-color: #ff7242;
+      border-color: #ff7242;
+      border-radius: 8px;
+    }
+    .ant-pagination-item a:hover {
+      color: white;
+    }
+
+    .ant-pagination-item-link {
+      color: rgb(80, 83, 87);
+    }
+
+    .ant-pagination-item-active {
+      background-color: #00c4b6;
+      border-color: #00c4b6;
+    }
+
+    .ant-pagination-item-active a {
+      color: white;
+    }
+  }
 }
