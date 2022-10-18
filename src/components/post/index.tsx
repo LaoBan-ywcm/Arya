@@ -46,7 +46,7 @@ const Post: React.FC<PostProps> = ({ postID }) => {
         children={postContent?.content as string}
         remarkPlugins={[remarkGfm]}
         components={{
-          img: ({ node, ...props }) => <img style={{ maxWidth: '95%' }} {...props} />,
+          img: ({ node, ...props }) => <img className={styles.img} {...props} />,
           code: ({ node, inline, className, children, ...props }) => {
             const match = /language-(\w+)/.exec(className || '');
             return !inline && match ? (
