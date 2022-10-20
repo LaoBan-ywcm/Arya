@@ -11,7 +11,7 @@ const App: React.FC = (): ReactElement => {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="" element={<Home />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/post/:id" element={<PostPage />}></Route>
         </Routes>
       </BrowserRouter>

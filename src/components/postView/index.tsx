@@ -1,8 +1,9 @@
 import { faCalendarDays, faInbox, faTag } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Pagination } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import qs from 'qs';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { fetchPostsView, getPostsViewSlice, getPostsViewTotal } from './store';
 import styles from './style.less';
@@ -53,24 +54,31 @@ const PostInfo: React.FC<PostInfoParams> = ({ title, ctime, categories, tags, co
   );
 };
 
-const PostsView: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+interface PostsViewParams {
+  page?: number;
+}
 
+const PostsView: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigator = useNavigate();
   const postsViews = useAppSelector((state) => getPostsViewSlice(state));
   const total = useAppSelector((state) => getPostsViewTotal(state));
 
-  useEffect(() => {
-    dispatch(fetchPostsView(currentPage));
-  }, [currentPage]);
+  const location = useLocation();
+  const { search } = location;
+  // 获取location.search中的参数
+  const { page } = qs.parse(search.replace(/^\?/, ''));
+  const pageNumber = Number(page);
 
-  const handlerPageChange = (page: number, pageSize: number) => {
-    setCurrentPage(page);
+  useEffect(() => {
+    dispatch(fetchPostsView(pageNumber));
+  }, [pageNumber]);
+
+  const handlerPageChange = (p: number, pageSize: number) => {
+    navigator(`/?page=${p}`);
   };
 
   const handlerPostViewClick = (id: string) => {
-    console.log(`/post/${id}`);
     navigator(`/post/${id}`);
   };
 
@@ -103,11 +111,11 @@ const PostsView: React.FC = () => {
       </div>
       <div className={styles.pagination}>
         <Pagination
-          current={currentPage}
+          current={pageNumber}
           total={total}
           hideOnSinglePage={true}
-          onChange={(page, pageSize) => {
-            handlerPageChange(page, pageSize);
+          onChange={(p, pageSize) => {
+            handlerPageChange(p, pageSize);
           }}
         />
       </div>
