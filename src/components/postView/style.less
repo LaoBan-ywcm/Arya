@@ -16,6 +16,15 @@
     background-color: rgb(252, 252, 252);
     margin-top: 20px;
     border-radius: 8px;
+    // hover到外层div，触发内部img动画
+    &:hover {
+      .view-box-img0,
+      .view-box-img1 {
+        .img {
+          transform: scale(1.1);
+        }
+      }
+    }
 
     .view-box-img {
       flex: 0 0 @viewBoxImgWidth;
@@ -28,9 +37,9 @@
         object-fit: cover;
         transition: all 0.6s;
 
-        &:hover {
-          transform: scale(1.1);
-        }
+        // &:hover {
+        //   transform: scale(1.1);
+        // }
       }
     }
 
