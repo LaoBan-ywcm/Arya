@@ -66,8 +66,10 @@ const PostsView: React.FC = () => {
 
   const location = useLocation();
   const { search } = location;
+
   // 获取location.search中的参数
-  const { page } = qs.parse(search.replace(/^\?/, ''));
+  let { page } = qs.parse(search.replace(/^\?/, ''));
+  page = !page ? '1' : page;
   const pageNumber = Number(page);
 
   useEffect(() => {

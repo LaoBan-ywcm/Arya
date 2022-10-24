@@ -7,6 +7,10 @@ import styles from './style.less';
 
 const PostPage: React.FC = () => {
   const { id: postID } = useParams();
+
+  // 页面加载完后，滚动到最前面
+  setTimeout(() => window.scrollTo(0, 0), 150);
+
   return (
     <div className={styles.postPage}>
       <div>
